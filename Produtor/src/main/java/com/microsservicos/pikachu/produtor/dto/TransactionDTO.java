@@ -50,9 +50,5 @@ public class TransactionDTO {
 	public void setInstallment(List<InstallmentDTO> installment) {
 		this.installment = installment;
 	}
-
-	
-	
-	
 	
 }
