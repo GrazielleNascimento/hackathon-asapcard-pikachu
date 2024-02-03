@@ -8,7 +8,7 @@ public class DataDTO {
 	@CsvBindByPosition(position = 0)
 	private String id_transaction;
 	@CsvBindByPosition(position = 1)
-	private Date date;
+	private String date;
 	@CsvBindByPosition(position = 2)
 	private String id_person;
 	@CsvBindByPosition(position = 3)
@@ -30,11 +30,11 @@ public class DataDTO {
 		this.id_transaction = id_transaction;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -70,12 +70,6 @@ public class DataDTO {
 		this.amount = amount;
 	}
 
-	@Override
-	public String toString() {
-		return "DataDTO [id_transaction=" + id_transaction + ", date=" + date + ", id_person=" + id_person + ", nome="
-				+ nome + ", idade=" + idade + ", amount=" + amount + "]";
-	}
-	
 	
 	
 }
