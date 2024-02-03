@@ -18,13 +18,8 @@ public class DataDTO {
 	@CsvBindByPosition(position = 5)
 	private Double amount;
 	
-	public DataDTO(String id_transaction, Date date, String id_person, String nome, Short idade, Double amount) {
-		this.id_transaction = id_transaction;
-		this.date = date;
-		this.id_person = id_person;
-		this.nome = nome;
-		this.idade = idade;
-		this.amount = amount;
+	public DataDTO() {
+
 	}
 
 	public String getId_transaction() {
