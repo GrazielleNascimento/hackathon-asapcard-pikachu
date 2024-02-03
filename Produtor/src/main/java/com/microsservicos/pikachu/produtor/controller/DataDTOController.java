@@ -26,7 +26,7 @@ public class DataDTOController {
         @GetMapping("/all")
         public ResponseEntity<List<DataDTO>> getAll() throws IllegalStateException, FileNotFoundException{
         	
-            String fileName = "C:\\Dev\\Spring\\hackathon-asapcard-pikachu\\Produtor\\src\\main\\resources\\data.csv";
+            String fileName = "src/main/resources/data.csv";
             
             CSVParser csvParser = new CSVParserBuilder()
                     .withSeparator(';') // Set your custom delimiter here
