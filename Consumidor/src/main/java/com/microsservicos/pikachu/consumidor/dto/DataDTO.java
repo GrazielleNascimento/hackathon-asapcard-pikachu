@@ -1,28 +1,19 @@
-package com.microsservicos.pikachu.produtor.dto;
-
-import com.opencsv.bean.CsvBindByPosition;
+package com.microsservicos.pikachu.consumidor.dto;
 
 public class DataDTO {
 	
-	@CsvBindByPosition(position = 0)
 	private String id_transaction;
-	@CsvBindByPosition(position = 1)
 	private String date;
-	@CsvBindByPosition(position = 2)
 	private String id_person;
-	@CsvBindByPosition(position = 3)
 	private String nome;
-	@CsvBindByPosition(position = 4)
 	private Short idade;
-	@CsvBindByPosition(position = 5)
 	private Double amount;
-	@CsvBindByPosition(position = 6)
-	private int qtd_installment;
-	
+	private Long qtd_installment;
 	
 	public DataDTO() {
 
 	}
+
 
 	public String getId_transaction() {
 		return id_transaction;
@@ -72,15 +63,15 @@ public class DataDTO {
 		this.amount = amount;
 	}
 
-	public int getQtd_installment() {
+	public Long getQtd_installment() {
 		return qtd_installment;
 	}
 
-	public void setQtd_installment(int qtd_installment) {
+	public void setQtd_installment(Long qtd_installment) {
 		this.qtd_installment = qtd_installment;
 	}
 	
 	
-	
+
 	
 }
