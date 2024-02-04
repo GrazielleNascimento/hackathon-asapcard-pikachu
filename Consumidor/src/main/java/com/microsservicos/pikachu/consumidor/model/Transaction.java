@@ -1,16 +1,19 @@
 package com.microsservicos.pikachu.consumidor.model;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+@Entity
+@Table(name ="tb_transaction")
 public class Transaction {
 	
 	@Id
@@ -18,7 +21,7 @@ public class Transaction {
 	private String id;
 	
 	@NotNull
-	private Date transaction_date;
+	private String transaction_date;
 	
 	@NotNull
 	private Double amount; 
@@ -37,10 +40,10 @@ public class Transaction {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getTransaction_date() {
+	public String getTransaction_date() {
 		return transaction_date;
 	}
-	public void setTransaction_date(Date transaction_date) {
+	public void setTransaction_date(String transaction_date) {
 		this.transaction_date = transaction_date;
 	}
 	public Double getAmount() {
@@ -55,10 +58,10 @@ public class Transaction {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	public List<Installment> getInstallment() {
+	public List<Installment> getInstallments() {
 		return installments;
 	}
-	public void setInstallment(List<Installment> installment) {
+	public void setInstallments(List<Installment> installment) {
 		this.installments = installment;
 	}
 	

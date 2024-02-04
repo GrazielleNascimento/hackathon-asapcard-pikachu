@@ -8,15 +8,12 @@ public class DataDTO {
 	private String nome;
 	private Short idade;
 	private Double amount;
+	private Long qtd_installment;
+	
+	public DataDTO() {
 
-	public DataDTO(String id_transaction, String date, String id_person, String nome, Short idade, Double amount) {
-		this.id_transaction = id_transaction;
-		this.date = date;
-		this.id_person = id_person;
-		this.nome = nome;
-		this.idade = idade;
-		this.amount = amount;
 	}
+
 
 	public String getId_transaction() {
 		return id_transaction;
@@ -65,6 +62,16 @@ public class DataDTO {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
+
+	public Long getQtd_installment() {
+		return qtd_installment;
+	}
+
+	public void setQtd_installment(Long qtd_installment) {
+		this.qtd_installment = qtd_installment;
+	}
+	
+	
 
 	
 }

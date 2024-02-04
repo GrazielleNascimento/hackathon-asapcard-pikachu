@@ -8,20 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microsservicos.pikachu.consumidor.model.Person;
-import com.microsservicos.pikachu.consumidor.repository.PersonRepository;
+import com.microsservicos.pikachu.consumidor.model.Installment;
+import com.microsservicos.pikachu.consumidor.repository.InstallmentRepository;
 
 @RestController
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/installments")
+public class InstallmentController {
+
+	
 	
 	@Autowired
-	private PersonRepository personRepository;
+	private InstallmentRepository installmentRepository;
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Person>> getAll(){
+	public ResponseEntity<List<Installment>> getAll(){
 		
 		
-		return ResponseEntity.ok(personRepository.findAll());
+		return ResponseEntity.ok(installmentRepository.findAll());
 		}
 }

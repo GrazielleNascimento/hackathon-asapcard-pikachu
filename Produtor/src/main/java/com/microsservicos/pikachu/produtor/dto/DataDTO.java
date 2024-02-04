@@ -1,6 +1,5 @@
 package com.microsservicos.pikachu.produtor.dto;
 
-import java.sql.Date;
 import com.opencsv.bean.CsvBindByPosition;
 
 public class DataDTO {
@@ -18,7 +17,8 @@ public class DataDTO {
 	@CsvBindByPosition(position = 5)
 	private Double amount;
 	@CsvBindByPosition(position = 6)
-	private int installment;
+	private int qtd_installment;
+	
 	
 	public DataDTO() {
 
@@ -72,12 +72,12 @@ public class DataDTO {
 		this.amount = amount;
 	}
 
-	public int getInstallment() {
-		return installment;
+	public int getQtd_installment() {
+		return qtd_installment;
 	}
 
-	public void setInstallment(int installment) {
-		this.installment = installment;
+	public void setQtd_installment(int qtd_installment) {
+		this.qtd_installment = qtd_installment;
 	}
 	
 	
