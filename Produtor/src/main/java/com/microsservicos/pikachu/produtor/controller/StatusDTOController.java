@@ -20,7 +20,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 
 @RestController
-@RequestMapping("/csv")
+@RequestMapping("/status")
 public class StatusDTOController {
 
 
