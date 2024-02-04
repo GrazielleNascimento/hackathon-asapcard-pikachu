@@ -18,9 +18,25 @@ public class TransactionController {
 	@Autowired
 	private TransactionRepository transactionRepository;
 	
-	@GetMapping("/all")
+//	@GetMapping("/all")
+//	public ResponseEntity<List<Transaction>> getAll(){
+//		
+//		
+//		return ResponseEntity.ok(transactionRepository.findAll());
+//		}
+	
+	@GetMapping("/update")
 	public ResponseEntity<List<Transaction>> getAll(){
 		
+		List<Transaction> transactions = transactionRepository.findAll();
+		
+		for(int i = 0 ; i <= transactions.size() ; i++) {
+			Transaction transaction = transactions.get(i);
+			
+			transaction.setStatus('P');
+			
+			transactionRepository.save(transaction);
+		}
 		
 		return ResponseEntity.ok(transactionRepository.findAll());
 		}

@@ -31,6 +31,7 @@ public class Installment {
 	@JsonIgnoreProperties("installments")
 	private Transaction transaction;
 	
+	
 	public UUID getId() {
 		return id;
 	}

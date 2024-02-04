@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -35,6 +36,9 @@ public class Transaction {
 	@JsonIgnoreProperties("transaction")
 	private List<Installment> installments;
 	
+	@Column(columnDefinition = "char default 'P'")
+    private char status;
+	
 	public String getId() {
 		return id;
 	}
@@ -64,9 +68,19 @@ public class Transaction {
 		installments.sort(Comparator.comparingInt(Installment::getInstallment_number));
 		return installments;
 	}
+	
 	public void setInstallments(List<Installment> installments) {
 	
 		this.installments = installments;
 	}
+	public char getStatus() {
+		return status;
+	}
+	public void setStatus(char status) {
+		
+		this.status = status;
+	}
+	
+	
 	
 }
