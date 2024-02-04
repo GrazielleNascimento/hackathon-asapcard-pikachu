@@ -1,6 +1,8 @@
 package com.microsservicos.pikachu.consumidor.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,9 @@ public class InstallmentService {
 		Long qtd_installment = dataDTO.getQtd_installment();
 		double amount = dataDTO.getAmount();
 		double installmentValue = amount/qtd_installment; 
-		List<Installment> listInstallment = new ArrayList<Installment>();
+		List<Installment> installments = new ArrayList<Installment>();
 		
-		for(int i = 0; i <= qtd_installment; i++) {
+		for(int i = 1; i <= qtd_installment; i++) {
 			Installment installment = new Installment();
 			
 			
@@ -35,21 +37,24 @@ public class InstallmentService {
 			
 			installmentRepository.save(installment);
 			
-			listInstallment.add(installment);
+			installments.add(installment);
 			
 		}
-		
-		return listInstallment;
+		Collections.sort(installments, Comparator.comparingInt(Installment::getInstallment_number));
+		return installments;
 	}
 	
 	
-	public Installment updateInstallment(Installment installment, Transaction transaction) {
+	public List<Installment> updateInstallment(List<Installment> installments, Transaction transaction) {
 		
-		installment.setTransaction(transaction);
+		for(int i = 1; i < installments.size(); i++) {
+			Installment installment = installments.get(i);
+			
+			installmentRepository.save(installment);
+			
+		}
 		
-		installmentRepository.save(installment);
-		
-		return installment;
+		return installments;
 	}
 
 }

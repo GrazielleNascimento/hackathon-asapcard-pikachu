@@ -1,5 +1,7 @@
 package com.microsservicos.pikachu.consumidor.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,21 +34,13 @@ public class DataDTOService {
 		
 		Person person = personService.createPerson(dataDTO);
 		Transaction transaction = transactionService.createTransaction(dataDTO);
-		
-		List<Transaction> transactions = transactionRepository.findAll();
 		List<Installment> installments = installmentService.createInstallment(dataDTO);
 		
+		List<Transaction> transactions = transactionRepository.findAll();
 		
 		personService.updatePerson(person, transactions );
-		
 		transactionService.updateTransaction(transaction, person, installments);
-		
-		for(int i = 1; i < installments.size(); i++) {
-			Installment installment = installments.get(i);
-			
-			installmentService.updateInstallment(installment, transaction);
-		}
-		
+		installmentService.updateInstallment(installments, transaction);
 		
 		return dataDTO;
 
