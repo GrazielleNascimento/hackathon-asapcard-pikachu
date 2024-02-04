@@ -31,7 +31,7 @@ public class Transaction {
 	private Person person;
 	
 	@OneToMany
-	@JsonIgnoreProperties("transactions")
+	@JsonIgnoreProperties("transaction")
 	private List<Installment> installments;
 	
 	public String getId() {
