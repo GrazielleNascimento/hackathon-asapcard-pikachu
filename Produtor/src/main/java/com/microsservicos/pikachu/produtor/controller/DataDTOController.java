@@ -52,8 +52,5 @@ public class DataDTOController {
             return ResponseEntity.ok(beans);
            
         }
-        
-    
-    
     
 }
