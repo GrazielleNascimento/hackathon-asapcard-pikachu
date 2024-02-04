@@ -9,3 +9,4 @@ import com.microsservicos.pikachu.consumidor.model.Installment;
 public interface InstallmentRepository extends JpaRepository<Installment, UUID> {
 
 }
+

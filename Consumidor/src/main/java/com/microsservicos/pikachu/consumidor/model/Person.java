@@ -59,5 +59,10 @@ public class Person {
 		this.transactions = transactions;
 	}
 	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", age=" + age + ", transactions=" + transactions + "]";
+	}
+	
 	
 }
