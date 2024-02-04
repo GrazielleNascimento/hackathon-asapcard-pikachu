@@ -1,6 +1,7 @@
 package com.microsservicos.pikachu.consumidor.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,20 +24,24 @@ public class PersonService {
 		person.setName(dataDTO.getNome());
 		person.setAge(dataDTO.getIdade());
 		
-        
-		personRepository.save(person);
-		
+		if(!personRepository.existsById(dataDTO.getId_person())) {
+			personRepository.save(person);
+		}
+
 		return person;
 	}
 	
 	
-	public Person updatePerson(Person person, List<Transaction> transactions){
+	public Optional<Person> updatePerson(Person person, List<Transaction> transactions){
 		
-		person.setTransactions(transactions);
+		if(personRepository.existsById(person.getId())) {
+			person.setTransactions(transactions);
+			personRepository.save(person);
+			return Optional.of(person);
+		}
+
+		return null; 
 		
-		personRepository.save(person);
-		
-		return person;
 	}
 	
 	

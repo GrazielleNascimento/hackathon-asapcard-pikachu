@@ -13,9 +13,7 @@ import com.microsservicos.pikachu.consumidor.repository.InstallmentRepository;
 
 @RestController
 @RequestMapping("/installments")
-public class InstallmentController {
-
-	
+public class InstallmentController { 
 	
 	@Autowired
 	private InstallmentRepository installmentRepository;

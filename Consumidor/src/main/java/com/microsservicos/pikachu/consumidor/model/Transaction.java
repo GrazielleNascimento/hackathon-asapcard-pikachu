@@ -1,5 +1,6 @@
 package com.microsservicos.pikachu.consumidor.model;
 
+import java.util.Comparator;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -59,10 +60,13 @@ public class Transaction {
 		this.person = person;
 	}
 	public List<Installment> getInstallments() {
+		// sort para organizar a lista de Installments
+		installments.sort(Comparator.comparingInt(Installment::getInstallment_number));
 		return installments;
 	}
-	public void setInstallments(List<Installment> installment) {
-		this.installments = installment;
+	public void setInstallments(List<Installment> installments) {
+	
+		this.installments = installments;
 	}
 	
 }

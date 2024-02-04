@@ -34,16 +34,12 @@ public class DataDTOService {
 		
 		Person person = personService.createPerson(dataDTO);
 		Transaction transaction = transactionService.createTransaction(dataDTO);
-		
-		List<Transaction> transactions = transactionRepository.findAll();
 		List<Installment> installments = installmentService.createInstallment(dataDTO);
 		
-		
+		List<Transaction> transactions = transactionRepository.findAll();
 		
 		personService.updatePerson(person, transactions );
-		
 		transactionService.updateTransaction(transaction, person, installments);
-		
 		installmentService.updateInstallment(installments, transaction);
 		
 		return dataDTO;
