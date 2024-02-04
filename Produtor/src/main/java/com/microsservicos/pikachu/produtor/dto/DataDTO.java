@@ -17,6 +17,8 @@ public class DataDTO {
 	private Short idade;
 	@CsvBindByPosition(position = 5)
 	private Double amount;
+	@CsvBindByPosition(position = 6)
+	private int installment;
 	
 	public DataDTO() {
 
@@ -70,6 +72,15 @@ public class DataDTO {
 		this.amount = amount;
 	}
 
+	public int getInstallment() {
+		return installment;
+	}
+
+	public void setInstallment(int installment) {
+		this.installment = installment;
+	}
+	
+	
 	
 	
 }
