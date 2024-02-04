@@ -1,30 +1,36 @@
 package com.microsservicos.pikachu.consumidor.controller;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 import com.microsservicos.pikachu.consumidor.dto.DataDTO;
 import com.microsservicos.pikachu.consumidor.service.DataDTOService;
 
-@RestController
-@RequestMapping("/data")
+@Component
 public class DataDTOController {
 	
 	@Autowired
 	private DataDTOService dataDTOService;
 	
-	@PostMapping
-	public ResponseEntity<DataDTO>  post(@RequestBody DataDTO dataDTO){
-		
+//	@PostMapping
+//	public ResponseEntity<DataDTO>  post(@RequestBody DataDTO dataDTO){
+//		
+//
+//		return ResponseEntity.ok(dataDTOService.saveAllByDataDTO(dataDTO));
+//		}
+	
+	
+	@RabbitListener(queues = "transactionQueue")
+    public void receberArquivo(DataDTO dataDTO) {
+        // Implemente a lógica para processar o conteúdo do arquivo recebido
 
-		return ResponseEntity.ok(dataDTOService.saveAllByDataDTO(dataDTO));
-		}
-	
-	
+		dataDTOService.saveAllByDataDTO(dataDTO);
+		
+		
+        
+     
+    }
 
 
 }
