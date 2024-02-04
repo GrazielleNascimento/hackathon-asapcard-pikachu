@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import com.microsservicos.pikachu.produtor.constants.RabbitmqConstants;
 import com.microsservicos.pikachu.produtor.dto.DataDTO;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -54,7 +55,7 @@ public class DataDTOService {
                 String mensagemJson = objectMapper.writeValueAsString(data);
 
                 // Envia a mensagem em JSON para a fila do RabbitMQ
-                rabbitTemplate.convertAndSend( "grazi", mensagemJson);
+                rabbitTemplate.convertAndSend(RabbitmqConstants.FILA_TRANSACTIONS, mensagemJson);
             } catch (JsonProcessingException e) {
                 // Trate a exceção caso ocorra erro na conversão para JSON
                 e.printStackTrace();
