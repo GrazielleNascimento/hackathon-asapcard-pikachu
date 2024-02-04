@@ -4,7 +4,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.microsservicos.pikachu.consumidor.dto.DataDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.microsservicos.pikachu.consumidor.service.DataDTOService;
 
 @Component
@@ -21,14 +22,13 @@ public class DataDTOController {
 //		}
 	
 	
-	@RabbitListener(queues = "transactionQueue")
-    public void receberArquivo(DataDTO dataDTO) {
-        // Implemente a lógica para processar o conteúdo do arquivo recebido
-
-		dataDTOService.saveAllByDataDTO(dataDTO);
+	@RabbitListener(queues = "transactionsQueue")
+    public void receberArquivo(String value) throws JsonMappingException, JsonProcessingException {
+      
 		
 		
-        
+		dataDTOService.saveAllByDataDTO(dataDTOService.createDataDTO(value));
+		
      
     }
 

@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotNull;
 public class Installment {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@NotNull

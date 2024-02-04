@@ -6,4 +6,5 @@ import com.microsservicos.pikachu.consumidor.model.Transaction;
 
 public interface TransactionRepository extends JpaRepository<Transaction, String>{
 
+
 }

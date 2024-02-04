@@ -1,5 +1,6 @@
 package com.microsservicos.pikachu.consumidor.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,16 +27,27 @@ public class PersonService {
 		
 		if(!personRepository.existsById(dataDTO.getId_person())) {
 			personRepository.save(person);
+		}else {
+			person = personRepository.getById(person.getId());
 		}
 
 		return person;
 	}
 	
 	
-	public Optional<Person> updatePerson(Person person, List<Transaction> transactions){
+	public Optional<Person> updatePerson(Person person, Transaction transaction){
+		
 		
 		if(personRepository.existsById(person.getId())) {
-			person.setTransactions(transactions);
+			
+			if(person.getTransactions() != null) {
+				person.getTransactions().add(transaction);
+			} else {
+				List<Transaction> transactions = new ArrayList<Transaction>();
+				transactions.add(transaction);
+				person.setTransactions(transactions);
+			}
+			
 			personRepository.save(person);
 			return Optional.of(person);
 		}
