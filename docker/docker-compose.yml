@@ -3,7 +3,7 @@ version: '3.8'
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbit
+    container_name: rabbitmq
     restart: always
     ports:
       - "5672:5672"
@@ -17,9 +17,9 @@ services:
     container_name: mysql
     restart: always
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=rootroot
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=db_Pikachu
-      - MYSQL_USER=Pikachu1@user
-      - MYSQL_PASSWORD=Pikachu1@pass
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
