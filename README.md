@@ -28,7 +28,12 @@ No mundo moderno das transações financeiras e comerciais, a eficiência e a co
  <br>
 
 # 🔎 Fluxograma do Projeto
+
+<div  align="center"> 
+ 
 ![arquitetura do projeto](https://i.imgur.com/IXfNk9g.png)
+ </div>
+ 
  <br>
 - Arquitetura: Segue o padrão MVC com uma abordagem Web Spring API.
 
