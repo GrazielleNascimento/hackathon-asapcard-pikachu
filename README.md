@@ -91,33 +91,51 @@ guest
 ```
 
 
+
 ##  
 
 ## 📍 Testes
 
- - Abra o Insomnia:
+#### Produtor: 
 
-- Inicie o aplicativo Insomnia no seu computador.
+- Rode o sistema Produtor
+
+- Inicie o aplicativo Insomnia no seu computador (ou outro gerenciador de requisições).
 
 - Crie uma Nova Requisição do Tipo 'POST':
 
-- Produtor: 
+- Envie primeiramente o post vazio para /datadto
 
+/datadto = envia o dataDTO para a fila transactionsQueue
+- **Base URL:** `'http://localhost:8080/datadto'` 
 
-/csv = envia o dataDTO para a fila transactionsQueue
-- **Base URL:** `'http://localhost:8080/csv'` 
+- execute o método post abaixo apenas se o consumidor já tiver lido as transactions
 
+/statusdto = envia o StatusDTO para a fila statusQueue
+- **Base URL:** `'http://localhost:8080/statusdto'` 
 
-/status = envia o StatusDTO para a fila statusQueue
-- **Base URL:** `'http://localhost:8080/status'` 
+#### Consumidor:
 
-- Consumidor:
+- Altere o application.properties e mude o username e password de acordo com o seu banco de dados mySQL
 
-transaction/all/{status} =  retorna todas as transações de acordo com o status passado do PathVariable status. Exemplo: transaction/all/c = busca todos confirmados a partir do status C
+- Rode o sistema Consumidor
 
-c - processamento concluido
-n - processamento negado
-p - processamento pendente
+- O sistema irá ler toda as filas. É importante que apenas a fila de transactions seja lida neste momento.
+
+- Crie uma Nova Requisição do Tipo 'Get':
+
+- transaction/all/ =  retorna todas as transações, neste momento elas ainda estão pendentes
+
+- após toda fila de transações for salva no programa, agora é a hora de receber todas os Status. Rode novamente o produtor, e dessa vez use o caminho /statusdto no insomnia para enviar os status no rabbit.
+
+- execute o consumidor e aguarde o programa atualizar o status de todas transações.
+
+- transaction/all/{status} =  retorna todas as transações de acordo com o status passado do PathVariable.
+  Exemplo: transaction/all/c = busca todos confirmados a partir do status C
+
+c - processamento concluido  <br>
+n - processamento negado  <br>
+p - processamento pendente  <br>
 
 ## Diagrama de Classes
 
