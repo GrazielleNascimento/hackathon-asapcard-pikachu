@@ -5,8 +5,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -28,16 +29,17 @@ public class Transaction {
 	@NotNull
 	private Double amount; 
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("transactions")
 	private Person person;
+	
+	@NotNull
+    private char status = 'P';
 	
 	@OneToMany
 	@JsonIgnoreProperties("transaction")
 	private List<Installment> installments;
 	
-	@Column(columnDefinition = "char default 'P'")
-    private char status;
 	
 	public String getId() {
 		return id;
@@ -77,7 +79,6 @@ public class Transaction {
 		return status;
 	}
 	public void setStatus(char status) {
-		
 		this.status = status;
 	}
 	
