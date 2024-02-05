@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div   >
 
 # 📋 Microsservico com RabbitMQ e Java
 
@@ -6,7 +6,7 @@
 
  </div>
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
+<div  align="center">
     <img src="https://i.imgur.com/w8tTOuT.png" title="source: imgur.com" />
     <img src="https://i.imgur.com/69rzRvl.png" width="160" alt="pikachu" style="margin-left: 20px;" />
 </div>
