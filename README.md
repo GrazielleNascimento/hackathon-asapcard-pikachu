@@ -71,7 +71,7 @@ docker compose up -d
 
 
 
-## 💡Executando a aplicação
+## 💡Executando o RabbitMQ
 
 
 - Acesse o RabbitMQ
@@ -94,7 +94,7 @@ guest
 
 ##  
 
-## 📍 Testes
+## 📍 Testando a aplicação
 
 #### Produtor: 
 
