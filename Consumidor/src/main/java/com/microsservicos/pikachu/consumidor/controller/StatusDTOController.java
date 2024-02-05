@@ -18,8 +18,7 @@ public class StatusDTOController {
 		
 		@RabbitListener(queues = "statusQueue")
 	    public void receberStatus(String value) throws JsonMappingException, JsonProcessingException {
-	      
-			
+
 		    try {
 		        statusDTOService.updateTransactionStatus(statusDTOService.createStatusDTO(value));
 		    } catch (RuntimeException e) {
@@ -28,8 +27,5 @@ public class StatusDTOController {
 		    }
 	     
 	    }
-		
 
-
-	
 }

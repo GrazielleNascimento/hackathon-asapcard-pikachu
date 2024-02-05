@@ -10,18 +10,14 @@ import com.microsservicos.pikachu.consumidor.service.DataDTOService;
 
 @Component
 public class DataDTOController {
-	
+
 	@Autowired
 	private DataDTOService dataDTOService;
-	
 	
 	@RabbitListener(queues = "transactionsQueue")
     public void  receberData(String value) throws JsonMappingException, JsonProcessingException {
       
 		dataDTOService.saveAllByDataDTO(dataDTOService.createDataDTO(value));
 		
-     
     }
-
-
 }
