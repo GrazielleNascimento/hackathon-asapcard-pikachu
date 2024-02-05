@@ -27,10 +27,10 @@ No mundo moderno das transações financeiras e comerciais, a eficiência e a co
  <hr>
  <br>
 
+<div  align="center"> 
+
 # 🔎 Fluxograma do Projeto
 
-<div  align="center"> 
- 
 ![arquitetura do projeto](https://i.imgur.com/IXfNk9g.png)
  </div>
  
