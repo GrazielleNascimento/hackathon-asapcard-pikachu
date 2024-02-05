@@ -21,7 +21,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 
 @RestController
-@RequestMapping("/csv")
+@RequestMapping("/datadto")
 public class DataDTOController {
 
 
