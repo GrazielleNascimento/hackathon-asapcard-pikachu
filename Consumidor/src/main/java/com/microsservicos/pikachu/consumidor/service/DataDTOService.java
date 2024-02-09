@@ -12,7 +12,6 @@ import com.microsservicos.pikachu.consumidor.dto.DataDTO;
 import com.microsservicos.pikachu.consumidor.model.Installment;
 import com.microsservicos.pikachu.consumidor.model.Person;
 import com.microsservicos.pikachu.consumidor.model.Transaction;
-import com.microsservicos.pikachu.consumidor.repository.TransactionRepository;
 
 
 
@@ -28,8 +27,6 @@ public class DataDTOService {
 	@Autowired
 	private InstallmentService installmentService;
 	
-	@Autowired
-	private TransactionRepository transactionRepository;
 	
 	
 	public DataDTO createDataDTO(String dataString ) throws JsonMappingException, JsonProcessingException {
@@ -47,14 +44,26 @@ public class DataDTOService {
 	
 	public DataDTO saveAllByDataDTO(DataDTO dataDTO) {
 		
-		Person person = personService.createPerson(dataDTO);
-		Transaction transaction = transactionService.createTransaction(dataDTO);
-		List<Installment> installments = installmentService.createInstallment(dataDTO);
+		//Mudei aqui para passar individualmente apenas o necessário para os métodos funcionarem. Antes, estava passando dataDTO por completo, mesmo que os métodos não fossem usar todos seus dados.
+		//Além disso, evitei o uso excessivo do get em dataDTO, pois agora pego todos os dados e passo individualmente para os métodos, sem repetir o uso do get.
+		
+		String id_person = dataDTO.getId_person();
+		String id_transaction = dataDTO.getId_transaction();
+		String nome = dataDTO.getNome();
+		short idade = dataDTO.getIdade();
+		String data = dataDTO.getDate();
+		Double amount = dataDTO.getAmount();
+		Long qtd_installment = dataDTO.getQtd_installment();
+		
+		
+		
+		Person person = personService.createPerson(id_person, nome, idade);
+		Transaction transaction = transactionService.createTransaction(id_transaction, data, amount);
+		List<Installment> installments = installmentService.createInstallment(qtd_installment,amount, transaction);
 	
 		
 		personService.updatePerson(person, transaction );
 		transactionService.updateTransaction(transaction, person, installments);
-		installmentService.updateInstallment(installments, transaction);
 		
 		return dataDTO;
 

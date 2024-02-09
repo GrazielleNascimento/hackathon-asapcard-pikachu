@@ -14,7 +14,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, String
 	@Query("SELECT t FROM Transaction t WHERE LOWER(t.status) = LOWER(:status)")
 	List<Transaction> findAllByStatusIgnoreCase(@Param("status") char status);
 
-    @Query("SELECT t FROM Transaction t WHERE t.id = :idTransaction")
-    Transaction findByIdTransaction(@Param("idTransaction") String idTransaction);
-  
+	@Query("SELECT t FROM Transaction t WHERE t.id = :idTransaction")
+	Transaction findByTransactionId(@Param("idTransaction") String idTransaction);
+
 }

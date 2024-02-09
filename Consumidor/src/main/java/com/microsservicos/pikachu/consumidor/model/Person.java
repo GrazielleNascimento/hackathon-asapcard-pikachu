@@ -4,15 +4,14 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_consumidores")
@@ -22,15 +21,13 @@ public class Person {
 	@NotBlank
 	private String id;
 	
-	@Size(min = 2, max = 150, message = "O nome deve ter no mínimo 2 e no máximo 150 caracteres.")
+	@NotBlank
 	private String name;
 	
 	@NotNull
-	@Min(value = 1, message = "O valor mínimo permitido para a idade é 1")
-    @Max(value = 120, message = "O valor máximo permitido para a idade é 120")
 	private Short age;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("person")
 	private List<Transaction> transactions;
 

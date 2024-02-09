@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsservicos.pikachu.consumidor.dto.StatusDTO;
 import com.microsservicos.pikachu.consumidor.model.Transaction;
-import com.microsservicos.pikachu.consumidor.repository.PersonRepository;
 import com.microsservicos.pikachu.consumidor.repository.TransactionRepository;
 
 @Service
@@ -18,8 +17,6 @@ public class StatusDTOService {
 	@Autowired
 	private TransactionRepository transactionRepository;
 	
-	@Autowired
-	private PersonRepository personRepository;
 	
 	public StatusDTO createStatusDTO(String statusString ) throws JsonMappingException, JsonProcessingException {
 		
@@ -33,8 +30,8 @@ public class StatusDTOService {
 	
 	public StatusDTO updateTransactionStatus(StatusDTO statusDTO) {
 		String transaction_id = statusDTO.getId_transaction();
-	
-		Transaction transaction = transactionRepository.findByIdTransaction(transaction_id);
+		
+		Transaction transaction = transactionRepository.findByTransactionId(transaction_id);
 
 		if(transaction != null) {
 
@@ -49,6 +46,6 @@ public class StatusDTOService {
 				return statusDTO;
 			}
 		}
-		throw new RuntimeException("A transação não existe no banco de dados!");	
+		return null;
 	}
 }

@@ -29,14 +29,14 @@ public class Transaction {
 	@NotNull
 	private Double amount; 
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JsonIgnoreProperties("transactions")
 	private Person person;
 	
 	@NotNull
     private char status = 'P';
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "transaction", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("transaction")
 	private List<Installment> installments;
 	
